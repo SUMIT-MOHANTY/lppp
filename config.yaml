@@ -1,0 +1,36 @@
+gateway:
+  host: 0.0.0.0
+  port: 8000
+  workers: 4
+  timeout: 30
+
+rate_limit:
+  requests_per_minute: 100
+  burst: 20
+
+cache:
+  enabled: true
+  ttl: 300
+  redis_url: redis://localhost:6379/0
+
+adapters:
+  placeholder_api_a:
+    name: Placeholder API A
+    base_url: https://api.placeholder-a.com
+    auth_type: api_key
+    timeout: 30
+    retry_count: 3
+    enabled: false
+  
+  placeholder_api_b:
+    name: Placeholder API B
+    base_url: https://api.placeholder-b.com
+    auth_type: bearer_token
+    timeout: 30
+    retry_count: 3
+    enabled: false
+
+logging:
+  level: INFO
+  format: json
+  file: logs/gateway.log
